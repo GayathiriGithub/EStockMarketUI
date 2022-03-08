@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <div class="bg">
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <br>
+  <h1>Welcome to Stock Market </h1>
+  <br>
+  <br>
+  <marquee>Yesterday sensex and nifty closed with heavy fall down.
+    Today nifty is expected to go high and sensex to go low</marquee>
+<div class="whole">
+    <br>
+    <b>Add Stock Price</b><br><br>
+    <div class="code">
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Enter Company code" name="companyCode"
+        [(ngModel)]="addmodel.companyCode">
+    </mat-form-field>
+    </div>
+    <div class="price">
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Enter Stock Price" name="price" 
+        [(ngModel)]="addmodel.price">
+    </mat-form-field>                
+    </div>
+    <div class="bnt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-success btn-lg" (click)="addStock(addmodel.companyCode)">Add</button>
+    </div>
+</div>
+</div>
+</body>
+</html>

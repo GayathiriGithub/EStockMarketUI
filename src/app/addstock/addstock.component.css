@@ -1,0 +1,63 @@
+h1 {
+  text-align: center;
+  font-size: 40px;
+  color:white;
+}
+
+
+.whole,code,price {
+margin-left:8em;
+margin-right:110em;
+color:rgb(216, 31, 31);
+background-color: rgb(192, 197, 201);
+} 
+
+
+ .mat-form-field{
+  color: rgb(12, 12, 12);
+} 
+
+/*body{
+margin-top: 3em;
+margin-left:3em;
+margin-right:3em;
+background-color:rgb(220, 245, 151);
+} */
+
+
+
+/* body{
+  background-image: url("stockimg1.png");
+  width:100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  }
+ */
+  
+ head,body, html {
+  height: 100%;
+  margin: 0;
+}
+  .bg {
+    /* The image used */
+    background-image: url("stockimg1.png");
+  
+    /* Full height */
+    height: 100%; 
+    width: 120%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+  }
+  
+
+marquee{
+  font-size: large;
+  font-weight: bold;
+  font-style: oblique;
+  color:rgb(197, 5, 5);
+
+}

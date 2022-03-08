@@ -1,0 +1,188 @@
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <br>
+  <h1>Welcome to Stock Market </h1>
+   
+    <marquee>Yesterday sensex and nifty closed with heavy fall down.
+    Today nifty is expected to go high and sensex to go low and 
+    further few days BSE and NSE are going get higher</marquee>
+  <div class="whole">
+     <body>  
+        <!--<form [formGroup]="myCtrl">  -->
+        <div class="company-container">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Register Company
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="company name">
+                <mat-form-field appearance="legacy">
+                    <input matInput placeholder="Enter company name" [(ngModel)]="companymodel.companyName" required>
+                
+                    <mat-error *ngIf="myError('mycity', 'required')">Name is required</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="company code">
+                <mat-form-field appearance="legacy">
+                    <input matInput placeholder="Enter Company code" name="companyCode"
+                    [(ngModel)]="companymodel.companyCode" required>
+                </mat-form-field>
+            </div>
+
+            <div class="company CEO">
+                <mat-form-field appearance="legacy">
+                        <input matInput placeholder="Enter Company CEO" name="companyCEO" 
+                        [(ngModel)]="companymodel.companyCEO" required>
+                        <!--<mat-error *ngIf="companymodel.website.invalid">{{getErrorMessage()}}</mat-error>-->
+                </mat-form-field>
+            </div>
+
+            <div class="company Turnover">
+                <mat-form-field appearance="legacy">
+                    <input matInput placeholder="Enter Company Turnover" name="companyTurnOver"  minlength="8" [(ngModel)]="companymodel.companyTurnOver" required>
+                </mat-form-field>                
+            </div>
+
+            <div class="website">
+                <mat-form-field appearance="legacy">
+                    <input matInput placeholder="Enter Company website" [formControl]="email"
+                    [(ngModel)]="companymodel.website"  required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>                
+            </div>
+
+            <div class="stockexchange">
+                <mat-form-field appearance="legacy">
+                <mat-label>Stock Type</mat-label>
+                <mat-select [(ngModel)]="companymodel.stockExchange"  name="companymodel.stockExchange" required>
+                    <mat-option *ngFor="let s of stockMarket" [value]="s">{{s}}</mat-option>
+                </mat-select>    
+            </mat-form-field>         
+            </div>
+            <mat-action-row>
+                <div class="container-fluid padding">
+                    <div class="row">
+                        <button [disabled]="!(companymodel.companyTurnOver.length && companymodel.companyName
+                        && companymodel.companyCEO.length && companymodel.companyCEO.length 
+                         && companymodel.stockExchange.length && companymodel.website.length)" 
+                        mat-fab (click)="addCompanyDetails()">Save</button>
+                    </div>
+                </div>
+            </mat-action-row>
+               
+          </mat-expansion-panel>
+          </div>
+        <br><br><br>
+
+
+
+
+    <div class="viewAllCompany">
+        <div class="l">
+        <button class="btn btn-primary" (click)="viewAllCompany()">Refresh</button>
+    </div>
+
+	<div class="left">
+	    <mat-form-field class="example-full-width">
+	        <input matInput placeholder="Enter Company code" name="companyCode"
+	        [(ngModel)]="cmodel.companyCode">
+	    </mat-form-field>&nbsp;
+
+	    <button class="btn btn-success" (click)="viewSpecificCompany(cmodel.companyCode)">Search</button>   
+	</div>
+  
+   
+
+  <div class="table-responsive" *ngIf="companyarr?.length">
+  <table class="table table-bordered table-hover ts-wrapper">
+      <thead class="Mystyle">
+          <tr><th colspan="9">Company</th></tr>
+        <tr>
+            <th> Code</th>
+            <th ts-criteria="companyarr.companyName" ts-default> Name  </th>
+            <th>  CEO  </th>
+            <th>  Price  </th>
+            <th>  Type  </th>
+            <th> Website  </th>
+            <th> Stock Date  </th>
+            <th> Turn Over</th>
+            <th> Actions  </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let b of companyarr ">
+            <td>{{b.companyCode}} </td>
+            <td> {{b.companyName}}  </td>
+            <td> {{b.companyCEO}} </td>
+            <td> {{b.price | currency : 'INR ':'code'}} </td>
+            <td> {{b.stockExchange}}</td>
+            <td> {{b.website}}</td>
+            <td> {{b.stockDate | date:'medium'}}</td>
+            <td> {{b.companyTurnOver}}</td>
+            <td>
+            <button class="btn btn-danger btn-action-sm" title="Delete"
+                (click)="deleteCompany(b.companyCode)"><span class="glyphicon glyphicon-trash"></span>
+            </button>&nbsp;
+            <a routerLink="/updatestock" routerLinkActive="active">
+            <button class="btn btn-info btn-action-sm" title="Update stock">
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            </a>&nbsp;
+            <a routerLink="/addstock" routerLinkActive="active">
+                <button class="btn btn-success btn-action-sm" title="Add new stock">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </button>
+            </a>
+            </td>
+          </tr>
+        </tbody>     
+    </table>
+    </div>
+    </div>
+   
+<br>
+
+        
+<Br>
+
+    <h2> Aggregation Details</h2>
+
+    
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="From date"  [(ngModel)]="cmodel.fromDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="To date"  [(ngModel)]="cmodel.toDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+<br>
+
+<button class="btn btn-success" (click)="getaggregation(cmodel)" > Get Aggregation Details</button> 
+
+    <div class="style"> 
+    Max Price: {{max}}<Br>
+    Min Price: {{min}}<Br>
+    Average Price : {{average}}<Br>
+    </div>
+
+
+</body>
+</div>
